@@ -1,0 +1,18 @@
+{
+    "appPort": [
+        "9123:8123"
+    ],
+    "context": "..",
+    "extensions": [
+        "ms-python.python",
+        "github.vscode-pull-request-github",
+        "ryanluker.vscode-coverage-gutters",
+        "ms-python.vscode-pylance"
+    ],
+    "image": "ghcr.io/ludeeus/devcontainer/integration:stable",
+    "name": "HACS integration development",
+    "postCreateCommand": "container install",
+    "runArgs": [
+        "--network=host"
+    ]
+}

@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Aduro",
+        "description": "Veuillez renseigner les informations de votre poêle Aduro (vous trouverez le numéro de série et le mot de passe sur une étiquette en bas à l'intérieur de la porte de votre poêle)",
+        "data": {
+          "address": "Adresse IP",
+          "serial": "Numéro de série",
+          "pin": "Mot de passe"
+        }
+      }
+    },
+    "error": {
+      "auth": "Impossible de se connecter au poêle !"
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "data": {
+          "binary_sensor": "Capteur binaire activé",
+          "sensor": "Capteur activé",
+          "switch": "Interrupteur activé"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Aduro",
+        "description": "Please fill in your Aduro burner information (you will find the serial and the pin code at the bottom of the inside of the door of your burner)",
+        "data": {
+          "address": "IP address",
+          "serial": "Serial",
+          "pin": "Pin code"
+        }
+      }
+    },
+    "error": {
+      "auth": "Unable to connect to the burner!"
+    }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "data": {
+          "binary_sensor": "Binary sensor enabled",
+          "sensor": "Sensor enabled",
+          "switch": "Switch enabled"
+        }
+      }
+    }
+  }
+}

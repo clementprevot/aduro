@@ -1,0 +1,59 @@
+repos:
+  - repo: local
+    hooks:
+      - id: manifest
+        name: Update manifest.json
+        entry: bin/update_manifest
+        language: script
+        files: ^(custom_components/.+/const\.py|requirements\.txt)$
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.7.4
+    hooks:
+      - id: pyupgrade
+        args: [--py37-plus]
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+        args:
+          - --safe
+          - --quiet
+        files: ^(custom_components|bin|tests)/.+\.py$
+  - repo: https://github.com/PyCQA/flake8
+    rev: 3.8.1
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-docstrings==1.5.0
+          - pydocstyle==5.0.2
+        files: ^(custom_components|bin|tests)/.+\.py$
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.6.4
+    hooks:
+      - id: isort
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-executables-have-shebangs
+        stages: [manual]
+      - id: check-json
+        files: ^(custom_components|tests)/.+\.json$
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      # Run mypy through our wrapper script in order to get the possible
+      # pyenv and/or virtualenv activated; it may not have been e.g. if
+      # committing from a GUI tool that was not launched from an activated
+      # shell.
+      - id: mypy
+        name: mypy
+        entry: bin/run-in-env mypy
+        language: script
+        types: [python]
+        require_serial: true
+        files: ^custom_components/.+\.py$
+      - id: pylint
+        name: pylint
+        entry: bin/run-in-env python3 -m pylint
+        language: system
+        types: [python]
