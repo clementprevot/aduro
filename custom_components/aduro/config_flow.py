@@ -9,6 +9,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 from homeassistant.helpers.typing import ConfigType
+from pyduro.actions import discover
 
 from .api import AduroApiClient
 from .const import CONF_ADDRESS, CONF_PIN, CONF_SERIAL, DOMAIN, PLATFORMS
@@ -41,11 +42,22 @@ class AduroFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
             self._errors["base"] = "auth"
 
-        user_input = {}
-        # Provide defaults for form
-        user_input[CONF_ADDRESS] = ""
-        user_input[CONF_SERIAL] = ""
-        user_input[CONF_PIN] = ""
+        if user_input is None:
+            # Provide defaults for form
+            user_input = {}
+            user_input[CONF_PIN] = ""
+            user_input[CONF_ADDRESS] = ""
+            user_input[CONF_SERIAL] = ""
+
+            try:
+                response = discover.run()
+
+                if response and response.status == 0:
+                    user_input[CONF_ADDRESS] = response.burner_address
+                    user_input[CONF_SERIAL] = response.serial
+            # pylint: disable=bare-except
+            except:  # noqa: E722
+                pass
 
         return await self._show_config_form(user_input)
 
