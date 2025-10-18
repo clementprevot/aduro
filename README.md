@@ -1,3 +1,6 @@
+# THIS INTEGRATION IS NOT FINISHED AND IS NOT WORKING (AND WILL MOST LIKELY NEVER BE). YOU SHOULD CONSIDER USING https://github.com/freol35241/aduro2mqtt, https://github.com/NewImproved/Aduro or https://github.com/SpaceTeddy/homeassistant_aduro_stove_control_python_scripts
+
+
 [![HACS Default][hacs_shield]][hacs]
 [![GitHub Latest Release][releases_shield]][latest_release]
 [![GitHub All Releases][downloads_total_shield]][releases]
